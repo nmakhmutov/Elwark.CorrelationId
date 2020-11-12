@@ -25,7 +25,7 @@ namespace Elwark.People.Abstractions
 
         public string Value { get; }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (ReferenceEquals(null, obj)) return 1;
             if (ReferenceEquals(this, obj)) return 0;
@@ -35,7 +35,7 @@ namespace Elwark.People.Abstractions
                 : throw new ArgumentException($"Object must be of type {nameof(Identification)}", nameof(obj));
         }
 
-        public int CompareTo(Identification other)
+        public int CompareTo(Identification? other)
         {
             if (ReferenceEquals(this, other)) return 0;
             if (ReferenceEquals(null, other)) return 1;
@@ -45,7 +45,7 @@ namespace Elwark.People.Abstractions
             return string.Compare(Value, other.Value, StringComparison.Ordinal);
         }
 
-        public bool Equals(Identification other)
+        public bool Equals(Identification? other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -53,7 +53,7 @@ namespace Elwark.People.Abstractions
             return Type == other.Type && Value == other.Value;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
@@ -86,7 +86,7 @@ namespace Elwark.People.Abstractions
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
 
-        public static Identification Parse(string value)
+        public static Identification Parse(string? value)
         {
             if (value is null)
                 throw new ArgumentNullException(nameof(value));
@@ -94,10 +94,10 @@ namespace Elwark.People.Abstractions
             var separatorIndex = value.IndexOf(":", StringComparison.InvariantCultureIgnoreCase);
             if (separatorIndex < 0)
                 throw new ArgumentException($"Incorrect json format for type '{nameof(Identification)}'",
-                    nameof(Identification));
+                    nameof(value));
             
             if (!Enum.TryParse(value[..separatorIndex], true, out IdentificationType newType))
-                throw new ArgumentException($"Unknown type for '{nameof(Identification)}'", nameof(Identification));
+                throw new ArgumentException($"Unknown type for '{nameof(Identification)}'", nameof(value));
 
             return Create(newType, value[(separatorIndex + 1)..].Trim());
         }

@@ -23,7 +23,7 @@ namespace Elwark.People.Abstractions
 
         public int CompareTo(AccountId other) => Value.CompareTo(other.Value);
 
-        public int CompareTo(object obj) =>
+        public int CompareTo(object? obj) =>
             obj switch
             {
                 null => 1,
@@ -33,7 +33,7 @@ namespace Elwark.People.Abstractions
 
         public bool Equals(AccountId other) => Value == other.Value;
 
-        public override bool Equals(object obj) => obj is AccountId other && Equals(other);
+        public override bool Equals(object? obj) => obj is AccountId other && Equals(other);
 
         public override int GetHashCode() => Value.GetHashCode();
 
@@ -51,9 +51,10 @@ namespace Elwark.People.Abstractions
         public static explicit operator long(AccountId accountId) => accountId.Value;
         public static implicit operator AccountId(long id) => new AccountId(id);
 
-        public static AccountId Parse(string value) => long.Parse(value);
+        public static AccountId Parse(string? value) =>
+            long.Parse(value ?? throw new ArgumentNullException(nameof(value)));
 
-        public static bool TryParse(string value, out AccountId id)
+        public static bool TryParse(string? value, out AccountId id)
         {
             if (long.TryParse(value, out var result))
             {
