@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Protobuf Include="..\Protos\greet.proto" Link="Protos\greet.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.51.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Elwark.CorrelationId.Grpc\Elwark.CorrelationId.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\src\Elwark.CorrelationId\Elwark.CorrelationId.csproj" />
+  </ItemGroup>
+</Project>

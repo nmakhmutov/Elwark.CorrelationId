@@ -17,13 +17,13 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.100'
+          dotnet-version: '7.0.102'
 
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build -c Release
 
       - name: Test
-        run: dotnet test --configuration Release
+        run: dotnet test -c Release
 
       - name: Pack
         run: dotnet pack -c Release -o out
