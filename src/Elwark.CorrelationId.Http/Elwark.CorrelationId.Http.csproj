@@ -17,6 +17,7 @@
     <Company>Elwark</Company>
     <PackageProjectUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</RepositoryUrl>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />

@@ -22,11 +22,11 @@ jobs:
       - name: Build
         run: dotnet build -c Release
 
-      - name: Test
-        run: dotnet test -c Release
+      - name: Run Tests
+        run: dotnet test -c Release --no-restore --no-build --verbosity normal
 
       - name: Pack
-        run: dotnet pack -c Release -o out
+        run: dotnet pack -c Release -o ./out
 
       - name: Push generated package to Nuget registry
         run: |
