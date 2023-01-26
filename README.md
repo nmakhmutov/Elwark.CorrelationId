@@ -9,7 +9,7 @@ may be more suitable for more extensive tracing needs.
 
 ## Installation
 
-You should install Elwark.CorrelationId from NuGet:
+You should install [Elwark.CorrelationId](https://www.nuget.org/packages/Elwark.CorrelationId) from NuGet:
 
 ```ps
 Install-Package Elwark.CorrelationId
@@ -48,7 +48,7 @@ This registers a correlation id provider which generates new ids based on a rand
 
 ## Minimal API / MVC
 
-You should install Elwark.CorrelationId.Http from NuGet:
+You should install [Elwark.CorrelationId.Http](https://www.nuget.org/packages/Elwark.CorrelationId.Http) from NuGet:
 
 ```ps
 Install-Package Elwark.CorrelationId.Http
@@ -82,7 +82,7 @@ builder.Services
 ```
 
 ## gRPC
-You should install Elwark.CorrelationId.Grpc from NuGet:
+You should install [Elwark.CorrelationId.Grpc](https://www.nuget.org/packages/Elwark.CorrelationId.Grpc) from NuGet:
 
 ```ps
 Install-Package Elwark.CorrelationId.Grpc
