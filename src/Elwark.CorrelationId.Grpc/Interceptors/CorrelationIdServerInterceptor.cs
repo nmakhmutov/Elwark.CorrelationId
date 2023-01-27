@@ -65,7 +65,7 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
 
         using (_factory)
         {
-            if (!_options.AddToLoggingScope || string.IsNullOrEmpty(_options.LoggingScopeKey))
+            if (!_options.AddToLoggingScope)
                 return await response();
 
             var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlationId };
@@ -88,7 +88,7 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
 
         using (_factory)
         {
-            if (!_options.AddToLoggingScope || string.IsNullOrEmpty(_options.LoggingScopeKey))
+            if (!_options.AddToLoggingScope)
             {
                 await response();
                 return;

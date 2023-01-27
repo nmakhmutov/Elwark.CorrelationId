@@ -41,16 +41,15 @@ internal sealed class CorrelationIdMiddleware
         if (_options.IncludeInResponse)
             context.Response.OnStarting(() =>
             {
-                if (context.Response.Headers.ContainsKey(_options.ResponseHeader))
-                    return Task.CompletedTask;
+                if (!context.Response.Headers.ContainsKey(_options.ResponseHeader))
+                    context.Response.Headers.Add(_options.ResponseHeader, correlationId);
 
-                context.Response.Headers.Add(_options.ResponseHeader, correlationId);
                 return Task.CompletedTask;
             });
 
         using (factory)
         {
-            if (!_options.AddToLoggingScope || string.IsNullOrEmpty(_options.LoggingScopeKey))
+            if (!_options.AddToLoggingScope)
             {
                 await _next(context);
                 return;

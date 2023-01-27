@@ -8,7 +8,6 @@ builder.Services
     .AddCorrelationId(options =>
     {
         options.UpdateTraceIdentifier = true;
-        options.AddToLoggingScope = true;
     })
     .WithTraceIdentifierProvider();
 

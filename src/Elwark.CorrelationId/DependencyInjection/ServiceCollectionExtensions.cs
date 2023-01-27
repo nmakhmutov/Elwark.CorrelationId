@@ -56,7 +56,23 @@ public static class ServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(services, nameof(services));
         ArgumentNullException.ThrowIfNull(configure, nameof(configure));
 
-        services.Configure(configure);
+        services.AddOptions<CorrelationIdOptions>()
+            .Configure(configure)
+            .Validate(options =>
+                {
+                    if (string.IsNullOrEmpty(options.RequestHeader))
+                        return false;
+
+                    if (options.AddToLoggingScope && string.IsNullOrEmpty(options.LoggingScopeKey))
+                        return false;
+
+                    if (options.IncludeInResponse && string.IsNullOrEmpty(options.ResponseHeader))
+                        return false;
+
+                    return true;
+                },
+                "CorrelationId options is invalid"
+            );
 
         return services.AddCorrelationId();
     }

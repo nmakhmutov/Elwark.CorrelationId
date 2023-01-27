@@ -15,6 +15,8 @@ You should install [Elwark.CorrelationId](https://www.nuget.org/packages/Elwark.
 Install-Package Elwark.CorrelationId
 ```
 
+[![NuGet](https://img.shields.io/nuget/v/Elwark.CorrelationId.svg)](https://www.nuget.org/packages/Elwark.CorrelationId)
+
 This command from Package Manager Console will download and install CorrelationId and all required dependencies.
 
 All stable and some pre-release packages are available on NuGet. 
@@ -23,7 +25,7 @@ All stable and some pre-release packages are available on NuGet.
 
 ### Register with DI
 
-Inside `ConfigureServices` add the required correlation ID services, with common defaults.
+Inside `ConfigureServices` add the required correlation id services, with common defaults.
 
 ```csharp
 services.AddCorrelationId()
@@ -32,7 +34,7 @@ services.AddCorrelationId()
 or you can define with options
 
 ```csharp
-services.AddDefaultCorrelationId(options =>
+services.AddCorrelationId(options =>
 { 
     options.AddToLoggingScope = true;
     options.EnforceHeader = true;
@@ -53,6 +55,8 @@ You should install [Elwark.CorrelationId.Http](https://www.nuget.org/packages/El
 ```ps
 Install-Package Elwark.CorrelationId.Http
 ```
+
+[![NuGet](https://img.shields.io/nuget/v/Elwark.CorrelationId.Http.svg)](https://www.nuget.org/packages/Elwark.CorrelationId.Http)
 
 ### Add the middleware
 
@@ -87,6 +91,8 @@ You should install [Elwark.CorrelationId.Grpc](https://www.nuget.org/packages/El
 ```ps
 Install-Package Elwark.CorrelationId.Grpc
 ```
+
+[![NuGet](https://img.shields.io/nuget/v/Elwark.CorrelationId.Grpc.svg)](https://www.nuget.org/packages/Elwark.CorrelationId.Grpc)
 
 ### Add the interceptor
 
