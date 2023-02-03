@@ -4,7 +4,7 @@ using Elwark.CorrelationId.Grpc.Interceptors;
 
 namespace Grpc.AspNetCore.Server;
 
-public static class CorrelationIdExtensions
+public static class GrpcServiceOptionsExtensions
 {
     public static GrpcServiceOptions UseCorrelationId(this GrpcServiceOptions options)
     {

@@ -5,10 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
-    .AddCorrelationId(options =>
-    {
-        options.UpdateTraceIdentifier = true;
-    })
+    .AddCorrelationId(options => options.UpdateTraceIdentifier = true)
     .WithTraceIdentifierProvider();
 
 builder.Host
@@ -16,7 +13,8 @@ builder.Host
         configuration
             .Enrich.FromLogContext()
             .WriteTo.Console(
-                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}][{CorrelationId}] {Message:lj}{NewLine}{Exception}")
+                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}][{CorrelationId}] {Message:lj}{NewLine}{Exception}"
+            )
     );
 
 var app = builder.Build();

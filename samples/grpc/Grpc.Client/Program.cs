@@ -2,6 +2,7 @@ using Elwark.CorrelationId;
 using Elwark.CorrelationId.Abstractions;
 using Grpc;
 using Grpc.Core;
+using Grpc.Net.ClientFactory;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +14,11 @@ builder.Services
     .AddGrpc();
 
 builder.Services
-    .AddGrpcClient<Greeter.GreeterClient>(options => options.Address = new Uri("http://localhost:5251"))
-    .AddGrpcCorrelationIdForwarding();
+    .AddGrpcClient<Greeter.GreeterClient>(options =>
+    {
+        options.Address = new Uri("http://localhost:5251");
+        options.AddCorrelationIdForwarding();
+    });
 
 builder.Host
     .UseSerilog((_, configuration) =>
