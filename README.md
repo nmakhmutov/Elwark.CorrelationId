@@ -113,6 +113,15 @@ builder.Services
     .AddGrpcCorrelationIdForwarding();
 ```
 
+or
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greeter.GreeterClient>(options =>
+    {
+        options.AddCorrelationIdForwarding();
+    });
+```
 Where you need to access the correlation Id, you may request the `ICorrelationContextAccessor` from DI.
 
 ```csharp
