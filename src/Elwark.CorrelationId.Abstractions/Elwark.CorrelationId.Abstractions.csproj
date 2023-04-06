@@ -6,7 +6,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Elwark.CorrelationId.Abstractions</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Product>CorrelationId abstractions for ASP.NET Core</Product>
     <Description>ASP.NET Core correlation Id for distributed microservices.</Description>
     <RepositoryType>git</RepositoryType>

@@ -6,11 +6,11 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Elwark.CorrelationId</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Product>CorrelationId for ASP.NET Core</Product>
     <Description>ASP.NET Core correlation Id for distributed microservices.</Description>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>aspnetcore;correlationid;elwark</PackageTags>
+    <PackageTags>aspnetcore;correlationid;traceid;request;response;http;grpc;logging;elwark</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Neil Makhmutov</Authors>
@@ -18,11 +18,15 @@
     <PackageProjectUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</RepositoryUrl>
     <IsPackable>true</IsPackable>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Elwark.CorrelationId.Abstractions\Elwark.CorrelationId.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
