@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace Elwark.CorrelationId.Http.Providers;
 
-internal sealed class TraceIdCorrelationIdProvider : ICorrelationIdProvider
+internal sealed class TraceIdentifierCorrelationIdProvider : ICorrelationIdProvider
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public TraceIdCorrelationIdProvider(IHttpContextAccessor httpContextAccessor) =>
+    public TraceIdentifierCorrelationIdProvider(IHttpContextAccessor httpContextAccessor) =>
         _httpContextAccessor = httpContextAccessor;
 
     public string GenerateCorrelationId() =>

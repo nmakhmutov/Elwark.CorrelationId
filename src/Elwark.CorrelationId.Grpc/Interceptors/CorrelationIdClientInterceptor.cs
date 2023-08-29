@@ -127,8 +127,11 @@ internal sealed class CorrelationIdClientInterceptor : Interceptor
 
     private bool IsCorrelationIdExists(Metadata? metadata)
     {
-        var cid = metadata?.FirstOrDefault(x =>
-            string.Equals(x.Key, _options.ResponseHeader, StringComparison.InvariantCultureIgnoreCase));
+        if (metadata is null)
+            return false;
+
+        var cid = metadata.FirstOrDefault(x =>
+            string.Equals(x.Key, _options.ResponseHeader, StringComparison.OrdinalIgnoreCase));
 
         return !string.IsNullOrEmpty(cid?.Value);
     }

@@ -30,7 +30,6 @@ await using (var provider = app.Services.CreateAsyncScope())
 
 app.Run();
 
-
 namespace Http.Client
 {
     internal sealed class TestClient

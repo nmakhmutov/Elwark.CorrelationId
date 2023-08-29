@@ -57,18 +57,20 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
         if (_options.EnforceHeader && !hasCorrelationId)
             ThrowHeaderNotFoundException();
 
-        var correlationId = GetOrCreateId(header);
-        _factory.Create(correlationId, _options.RequestHeader);
-
-        if (_options.IncludeInResponse && !TryGetIdFromMetadata(context.ResponseTrailers, out _))
-            await context.WriteResponseHeadersAsync(new Metadata { new(_options.ResponseHeader, correlationId) });
-
         using (_factory)
         {
+            var correlation = _factory.Create(GetOrCreateId(header), _options.RequestHeader);
+
+            if (_options.IncludeInResponse && !TryGetIdFromMetadata(context.ResponseTrailers, out _))
+                await context.WriteResponseHeadersAsync(new Metadata
+                {
+                    new(_options.ResponseHeader, correlation.CorrelationId)
+                });
+
             if (!_options.AddToLoggingScope)
                 return await response();
 
-            var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlationId };
+            var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlation.CorrelationId };
             using (_logger.BeginScope(state))
                 return await response();
         }
@@ -80,21 +82,23 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
         if (_options.EnforceHeader && !hasCorrelationId)
             ThrowHeaderNotFoundException();
 
-        var correlationId = GetOrCreateId(header);
-        _factory.Create(correlationId, _options.RequestHeader);
-
-        if (_options.IncludeInResponse && !TryGetIdFromMetadata(context.ResponseTrailers, out _))
-            await context.WriteResponseHeadersAsync(new Metadata { new(_options.ResponseHeader, correlationId) });
-
         using (_factory)
         {
+            var correlation = _factory.Create(GetOrCreateId(header), _options.RequestHeader);
+
+            if (_options.IncludeInResponse && !TryGetIdFromMetadata(context.ResponseTrailers, out _))
+                await context.WriteResponseHeadersAsync(new Metadata
+                {
+                    new(_options.ResponseHeader, correlation.CorrelationId)
+                });
+
             if (!_options.AddToLoggingScope)
             {
                 await response();
                 return;
             }
 
-            var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlationId };
+            var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlation.CorrelationId };
             using (_logger.BeginScope(state))
                 await response();
         }

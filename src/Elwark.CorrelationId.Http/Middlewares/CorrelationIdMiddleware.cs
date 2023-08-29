@@ -31,31 +31,30 @@ internal sealed class CorrelationIdMiddleware
             return;
         }
 
-        var correlationId = GetOrCreateId(header);
-        factory.Create(correlationId, _options.RequestHeader);
-
-        if (_options.UpdateTraceIdentifier)
-            context.TraceIdentifier = correlationId;
-
-        // apply the correlation ID to the response header for client side tracking
-        if (_options.IncludeInResponse)
-            context.Response.OnStarting(() =>
-            {
-                if (!context.Response.Headers.ContainsKey(_options.ResponseHeader))
-                    context.Response.Headers.Add(_options.ResponseHeader, correlationId);
-
-                return Task.CompletedTask;
-            });
-
         using (factory)
         {
+            var correlation = factory.Create(GetOrCreateId(header), _options.RequestHeader);
+
+            if (_options.UpdateTraceIdentifier)
+                context.TraceIdentifier = correlation.CorrelationId;
+
+            // apply the correlation ID to the response header for client side tracking
+            if (_options.IncludeInResponse)
+                context.Response.OnStarting(() =>
+                {
+                    if (!context.Response.Headers.ContainsKey(_options.ResponseHeader))
+                        context.Response.Headers.Add(_options.ResponseHeader, correlation.CorrelationId);
+
+                    return Task.CompletedTask;
+                });
+
             if (!_options.AddToLoggingScope)
             {
                 await _next(context);
                 return;
             }
 
-            var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlationId };
+            var state = new Dictionary<string, object> { [_options.LoggingScopeKey] = correlation.CorrelationId };
 
             using (_logger.BeginScope(state))
                 await _next(context);

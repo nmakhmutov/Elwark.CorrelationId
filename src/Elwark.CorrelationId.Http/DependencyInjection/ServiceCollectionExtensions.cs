@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         builder.Services.AddHttpContextAccessor();
-        builder.Services.AddSingleton<ICorrelationIdProvider, TraceIdCorrelationIdProvider>();
+        builder.Services.AddSingleton<ICorrelationIdProvider, TraceIdentifierCorrelationIdProvider>();
 
         return builder;
     }
