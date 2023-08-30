@@ -1,31 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PackageId>Elwark.CorrelationId.Http</PackageId>
-    <Version>1.0.3</Version>
-    <Product>HTTP implementation of CorrelationId for ASP.NET Core</Product>
-    <Description>ASP.NET Core correlation Id for distributed microservices.</Description>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>aspnetcore;correlationid;elwark</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Authors>Neil Makhmutov</Authors>
-    <Company>Elwark</Company>
-    <PackageProjectUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</RepositoryUrl>
-    <IsPackable>true</IsPackable>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Elwark.CorrelationId.Abstractions\Elwark.CorrelationId.Abstractions.csproj" />
-    <ProjectReference Include="..\Elwark.CorrelationId\Elwark.CorrelationId.csproj" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup>
+        <PackageId>Elwark.CorrelationId.Http</PackageId>
+        <Version>1.0.3</Version>
+        <Product>HTTP implementation of CorrelationId for ASP.NET Core</Product>
+        <Description>ASP.NET Core correlation Id for distributed microservices.</Description>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>aspnetcore;correlationid;elwark</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Authors>Neil Makhmutov</Authors>
+        <Company>Elwark</Company>
+        <PackageProjectUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/nmakhmutov/Elwark.CorrelationId</RepositoryUrl>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Elwark.CorrelationId.Abstractions\Elwark.CorrelationId.Abstractions.csproj"/>
+        <ProjectReference Include="..\Elwark.CorrelationId\Elwark.CorrelationId.csproj"/>
+    </ItemGroup>
 </Project>
