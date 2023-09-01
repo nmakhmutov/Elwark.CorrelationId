@@ -1,3 +1,6 @@
+using Elwark.CorrelationId.Abstractions;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

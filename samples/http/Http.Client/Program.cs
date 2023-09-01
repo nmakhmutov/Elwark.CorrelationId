@@ -1,4 +1,5 @@
 using Elwark.CorrelationId;
+using Elwark.CorrelationId.Abstractions;
 using Http.Client;
 
 var builder = WebApplication.CreateBuilder(args);
