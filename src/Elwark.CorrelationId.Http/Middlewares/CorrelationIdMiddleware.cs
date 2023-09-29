@@ -64,18 +64,21 @@ internal sealed class CorrelationIdMiddleware
     private bool TryGetIdFromHeader(HttpContext context, out StringValues header) =>
         context.Request.Headers.TryGetValue(_options.RequestHeader, out header) && !StringValues.IsNullOrEmpty(header);
 
-    private string GetOrCreateId(StringValues header) =>
-        _options.IgnoreRequestHeader
-            ? _provider.GenerateCorrelationId()
-            : header.FirstOrDefault() ?? _provider.GenerateCorrelationId();
+    private string GetOrCreateId(StringValues header)
+    {
+        if (_options.IgnoreRequestHeader)
+            return _provider.GenerateCorrelationId();
 
-    private async Task WriteHeaderNotFoundError(HttpContext context)
+        return header.FirstOrDefault() ?? _provider.GenerateCorrelationId();
+    }
+
+    private Task WriteHeaderNotFoundError(HttpContext context)
     {
         if (_logger.IsEnabled(LogLevel.Error))
-            _logger.LogError("The '{Header}' request header is required, but was not found.", _options.RequestHeader);
+            _logger.RequestHeaderNotFound(_options.RequestHeader);
 
         context.Response.StatusCode = StatusCodes.Status400BadRequest;
-        await context.Response
+        return context.Response
             .WriteAsync($"The '{_options.RequestHeader}' request header is required, but was not found.");
     }
 }

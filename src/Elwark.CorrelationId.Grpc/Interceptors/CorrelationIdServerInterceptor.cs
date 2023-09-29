@@ -15,8 +15,8 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
     private readonly ICorrelationIdProvider _provider;
 
     public CorrelationIdServerInterceptor(ICorrelationIdProvider provider,
-        ILogger<CorrelationIdServerInterceptor> logger,
-        IOptions<CorrelationIdOptions> options, ICorrelationContextFactory factory)
+        ILogger<CorrelationIdServerInterceptor> logger, IOptions<CorrelationIdOptions> options,
+        ICorrelationContextFactory factory)
     {
         _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -109,10 +109,12 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
         header = null;
 
         var cid = metadata?.FirstOrDefault(x =>
-            string.Equals(x.Key, _options.RequestHeader, StringComparison.InvariantCultureIgnoreCase));
+            string.Equals(x.Key, _options.RequestHeader, StringComparison.OrdinalIgnoreCase));
 
         if (string.IsNullOrEmpty(cid?.Value))
             return false;
+
+        _logger.CorrelationIdFound(cid.Value);
 
         header = cid.Value;
         return true;
@@ -129,7 +131,7 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
     private void ThrowHeaderNotFoundException()
     {
         if (_logger.IsEnabled(LogLevel.Error))
-            _logger.LogError("The '{Header}' request header is required, but was not found.", _options.RequestHeader);
+            _logger.RequestHeaderNotFound(_options.RequestHeader);
 
         var message = $"The '{_options.RequestHeader}' request header is required, but was not found.";
         throw new RpcException(new Status(StatusCode.InvalidArgument, message));
