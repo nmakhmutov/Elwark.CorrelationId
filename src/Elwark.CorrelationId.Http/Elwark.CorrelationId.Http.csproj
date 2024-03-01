@@ -6,7 +6,7 @@
     </PropertyGroup>
     <PropertyGroup>
         <PackageId>Elwark.CorrelationId.Http</PackageId>
-        <Version>1.0.5</Version>
+        <Version>2.0.0</Version>
         <Product>HTTP implementation of CorrelationId for ASP.NET Core</Product>
         <Description>ASP.NET Core correlation Id for distributed microservices.</Description>
         <RepositoryType>git</RepositoryType>
@@ -21,8 +21,8 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
-        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Elwark.CorrelationId.Abstractions\Elwark.CorrelationId.Abstractions.csproj"/>
