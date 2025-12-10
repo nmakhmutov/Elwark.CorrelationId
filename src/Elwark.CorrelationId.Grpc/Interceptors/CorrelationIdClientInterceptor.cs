@@ -26,10 +26,17 @@ internal sealed class CorrelationIdClientInterceptor : Interceptor
 
         var entry = new Metadata.Entry(_options.ResponseHeader, _accessor.CorrelationContext.CorrelationId);
         if (context.Options.Headers is null)
-            context.Options.WithHeaders(new Metadata { entry });
-        else
-            context.Options.Headers.Add(entry);
+            return base.BlockingUnaryCall(
+                request,
+                new ClientInterceptorContext<TRequest, TResponse>(
+                    context.Method,
+                    context.Host,
+                    context.Options.WithHeaders(new Metadata { entry })
+                ),
+                continuation
+            );
 
+        context.Options.Headers.Add(entry);
         return base.BlockingUnaryCall(request, context, continuation);
     }
 
