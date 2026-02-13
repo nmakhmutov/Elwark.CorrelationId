@@ -62,10 +62,9 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
             var correlation = _factory.Create(GetOrCreateId(header), _options.RequestHeader);
 
             if (_options.IncludeInResponse && !TryGetIdFromMetadata(context.ResponseTrailers, out _))
-                await context.WriteResponseHeadersAsync(new Metadata
-                {
-                    new(_options.ResponseHeader, correlation.CorrelationId)
-                });
+                await context.WriteResponseHeadersAsync([
+                    new Metadata.Entry(_options.ResponseHeader, correlation.CorrelationId)
+                ]);
 
             if (!_options.AddToLoggingScope)
                 return await response();
@@ -87,10 +86,9 @@ internal sealed class CorrelationIdServerInterceptor : Interceptor
             var correlation = _factory.Create(GetOrCreateId(header), _options.RequestHeader);
 
             if (_options.IncludeInResponse && !TryGetIdFromMetadata(context.ResponseTrailers, out _))
-                await context.WriteResponseHeadersAsync(new Metadata
-                {
-                    new(_options.ResponseHeader, correlation.CorrelationId)
-                });
+                await context.WriteResponseHeadersAsync([
+                    new Metadata.Entry(_options.ResponseHeader, correlation.CorrelationId)
+                ]);
 
             if (!_options.AddToLoggingScope)
             {

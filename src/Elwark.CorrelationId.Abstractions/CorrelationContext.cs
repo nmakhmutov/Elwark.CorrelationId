@@ -9,6 +9,16 @@ public sealed class CorrelationContext
     public const string DefaultCorrelationId = "Not set";
 
     /// <summary>
+    ///     The Correlation ID which is applicable to the current request.
+    /// </summary>
+    public string CorrelationId { get; }
+
+    /// <summary>
+    ///     The name of the header from which the Correlation ID was read/written.
+    /// </summary>
+    public string Header { get; }
+
+    /// <summary>
     ///     Create a <see cref="CorrelationContext" /> instance.
     /// </summary>
     /// <param name="correlationId">The correlation ID on the context.</param>
@@ -21,14 +31,4 @@ public sealed class CorrelationContext
         CorrelationId = correlationId ?? DefaultCorrelationId;
         Header = header;
     }
-
-    /// <summary>
-    ///     The Correlation ID which is applicable to the current request.
-    /// </summary>
-    public string CorrelationId { get; }
-
-    /// <summary>
-    ///     The name of the header from which the Correlation ID was read/written.
-    /// </summary>
-    public string Header { get; }
 }
