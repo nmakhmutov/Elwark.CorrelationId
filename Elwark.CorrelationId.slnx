@@ -1,0 +1,26 @@
+<Solution>
+  <Folder Name="/actions/">
+    <File Path=".github/workflows/nuget.yml" />
+  </Folder>
+  <Folder Name="/samples/" />
+  <Folder Name="/samples/Grpc/">
+    <Project Path="samples/grpc/Grpc.Client/Grpc.Client.csproj" />
+    <Project Path="samples/grpc/Grpc.Server/Grpc.Server.csproj" />
+  </Folder>
+  <Folder Name="/samples/Http/">
+    <Project Path="samples/http/Http.Client/Http.Client.csproj" />
+    <Project Path="samples/http/Http.Server/Http.Server.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Elwark.CorrelationId.Abstractions/Elwark.CorrelationId.Abstractions.csproj" />
+    <Project Path="src/Elwark.CorrelationId.Grpc/Elwark.CorrelationId.Grpc.csproj" />
+    <Project Path="src/Elwark.CorrelationId.Http/Elwark.CorrelationId.Http.csproj" />
+    <Project Path="src/Elwark.CorrelationId/Elwark.CorrelationId.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Elwark.CorrelationId.Abstractions.Tests/Elwark.CorrelationId.Abstractions.Tests.csproj" />
+    <Project Path="tests/Elwark.CorrelationId.Grpc.Tests/Elwark.CorrelationId.Grpc.Tests.csproj" />
+    <Project Path="tests/Elwark.CorrelationId.Http.Tests/Elwark.CorrelationId.Http.Tests.csproj" />
+    <Project Path="tests/Elwark.CorrelationId.Tests/Elwark.CorrelationId.Tests.csproj" />
+  </Folder>
+</Solution>
